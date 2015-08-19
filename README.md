@@ -41,4 +41,10 @@ NB: *res_const it's only a constant pointer. No memory to frees in that case.
 
 When you have finished to usingthe queue:
 ```C
-queue_delete(my_lifo):
+queue_delete(my_lifo);
+````
+
+Author
+======
+
+Alberto Todde <alberto.tdd@gmail.com>
