@@ -96,11 +96,13 @@ bool queue_push(Queue *queue, const Article *article) {
 Article* queue_pop(Queue *queue) {
     if (!queue_isempty(queue)) {
         Article *copy = node_get_content(queue->top);
-        Node *old_top = queue->top;
-        queue->top = node_get_next(queue->top);
-        node_delete(old_top);
-        queue->size--;
-        return copy;
+        if (copy != 0) {
+            Node *old_top = queue->top;
+            queue->top = node_get_next(queue->top);
+            node_delete(old_top);
+            queue->size--;
+            return copy;
+        }
     }
     return 0;
 }
