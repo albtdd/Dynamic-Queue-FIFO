@@ -79,11 +79,9 @@ bool queue_push(Queue *queue, const Article *article) {
             if (queue_isempty(queue)) {
                 queue->top = node;
                 queue->bottom = queue->top;
-                puts("\nTOP");
             } else {
                 node_set_next(queue->bottom, node);
                 queue->bottom = node;
-                puts("\nBOTTOM");
             }
             queue->size++;
             return true;
@@ -95,14 +93,12 @@ bool queue_push(Queue *queue, const Article *article) {
 
 Article* queue_pop(Queue *queue) {
     if (!queue_isempty(queue)) {
-        Article *copy = node_get_content(queue->top);
-        if (copy != 0) {
-            Node *old_top = queue->top;
-            queue->top = node_get_next(queue->top);
-            node_delete(old_top);
-            queue->size--;
-            return copy;
-        }
+        Article *ptr = node_get_ptr(queue->top);
+        Node *old_top = queue->top;
+        queue->top = node_get_next(queue->top);
+        node_remove(old_top); // Don't delete article in the node
+        queue->size--;
+        return ptr;
     }
     return 0;
 }
@@ -110,7 +106,7 @@ Article* queue_pop(Queue *queue) {
 
 const Article* queue_peek(const Queue *queue) {
     if (!queue_isempty(queue)) {
-        const Article *const_ptr = node_get_content_ptr(queue->bottom);
+        const Article *const_ptr = node_get_const_ptr(queue->bottom);
         return const_ptr;
     }
     return 0;
@@ -121,9 +117,19 @@ void queue_iterator_const(const Queue *queue, const_iter_action action) {
     if (queue != 0 && action != 0) {
         const Node *ptr = queue->top;
         while (ptr != 0) {
-            action(node_get_content_ptr(ptr));
+            action(node_get_const_ptr(ptr));
             ptr = node_get_next(ptr);
         }
     }
 }
 
+
+void queue_iterator(Queue *queue, iter_action action) {
+    if (queue != 0 && action != 0) {
+        const Node *ptr = queue->top;
+        while (ptr != 0) {
+            action(node_get_ptr(ptr));
+            ptr = node_get_next(ptr);
+        }
+    }
+}
