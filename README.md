@@ -1,6 +1,5 @@
 # Dynamic-Queue-FIFO
 
-# Dynamic-Queue-FIFO
 A simple dynamic queue. A Queue follows the FIFO pattern's rules.
 
 A queue is a simple data structure that follows the simple rule: First In - First Out
