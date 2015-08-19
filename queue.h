@@ -188,4 +188,4 @@ void queue_iterator(Queue *queue, iter_action action);
 }
 #endif
 
-#endif // _STACK_H_
+#endif // _QUEUE_H_
