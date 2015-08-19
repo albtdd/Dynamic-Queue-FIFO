@@ -124,7 +124,9 @@ bool queue_push(Queue *queue, const Article *article);
 
 
 /**
- * @brief Gets an article from the top of queue and remove it from the queue
+ * @brief Pop the first article inserted.
+ *        Gets a pointer to the article in the node. The node is deleted
+ *        but not the article in the node.
  *
  * @param queue The queue pointer
  *
@@ -138,7 +140,8 @@ Article* queue_pop(Queue *queue);
 
 
 /**
- * @brief Gets an article from the top of queue without remove it
+ * @brief Pop the first article inserted.
+ *        Gets a pointer to the article in the node. The node is not deleted
  *
  * @param queue The queue pointer
  *
@@ -164,6 +167,21 @@ const Article* queue_peek(const Queue *queue);
  *       Undefined behavior any param is an invalid pointer
  */
 void queue_iterator_const(const Queue *queue, const_iter_action action);
+
+
+/**
+ * @brief A Iter from top to bottom of the queue
+ *
+ * @param queue The queue pointer
+ * @param action Pointer to the function that acts on every item
+ *
+ * @return nothing
+ *
+ * @note You can modify all the items of the queue
+ * @note No crash if any param is NULL
+ *       Undefined behavior any param is an invalid pointer
+ */
+void queue_iterator(Queue *queue, iter_action action);
 
 
 #ifdef __cplusplus
