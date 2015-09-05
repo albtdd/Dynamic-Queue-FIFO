@@ -54,6 +54,10 @@ typedef void (*const_iter_action)(const Article *);
 typedef void (*iter_action)(Article *);
 
 
+// Infinity
+#define INF 0
+
+
 /**
  * @brief Creates a new empty Queue
  *
@@ -64,7 +68,7 @@ typedef void (*iter_action)(Article *);
  * @note You must use this function before any other action
  *       You must free memory allocated with queue_delete
  */
-Queue* queue_new(void);
+Queue* queue_new(size_t max_size);
 
 
 /**
@@ -188,4 +192,4 @@ void queue_iterator(Queue *queue, iter_action action);
 }
 #endif
 
-#endif // _QUEUE_H_
+#endif // _STACK_H_
