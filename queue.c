@@ -31,18 +31,20 @@
 
 
 struct queue_t {
-    Node *top;
-    Node *bottom;
-    size_t size;
+    Node *top;          // Pointer to the Top of the queue
+    Node *bottom;       // Pointer to the bottom of the queue
+    size_t max_size;    // Max nodes allowed (0 means INF)
+    size_t size;        // Current size of the queue
 };
 
 
-Queue* queue_new(void) {
+Queue* queue_new(size_t max_size) {
     Queue *queue = malloc(sizeof *queue);
     if (queue != 0) {
         queue->top = 0;
         queue->bottom = 0;
         queue->size = 0;
+        queue->max_size = max_size;
     }
     return queue;
 }
@@ -71,6 +73,13 @@ bool queue_isempty(const Queue *queue) {
     return queue != 0 ? queue->size == 0 : false;
 }
 
+
+bool queue_isfull(const Queue *queue) {
+    if (queue != 0) {
+        return queue->max_size != INF ? queue->size == queue->max_size : false;
+    }
+    return true;
+}
 
 bool queue_push(Queue *queue, const Article *article) {
     if (queue != 0) {
