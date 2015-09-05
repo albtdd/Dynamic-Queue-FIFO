@@ -11,9 +11,8 @@
 
 
 int main(void) {
-    Queue *fifo = queue_new();
+    Queue *fifo = queue_new(INF);
     if (fifo) {
-
         printf("\nQueue is empty: %s\n",
                 queue_isempty(fifo) ? "Yes" : "No");
 
