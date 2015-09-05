@@ -72,6 +72,9 @@ bool queue_isfull(const Queue *queue);
 ```
 returns true if the queue is full (or NULL), false otherwise
 
+Note
+====
+I added two repositories (Article and Node) with which to create the libraries used in this project.
 
 Author
 ======
