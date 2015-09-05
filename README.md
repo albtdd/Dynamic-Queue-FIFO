@@ -9,8 +9,10 @@ Dynamic queue is not limited in size. You can add all the items you want. The on
 
 You can create a new queue with:
 ```C
-Queue *my_fifo = queue_new();
+Queue *my_fifo = queue_new(size_t max_size);
 ```
+
+max_size defines the max item allowed into the stack. 0 means infinity size. I have defined INF for this purpose
 
 I have created an item to push into the queue called Article. It's only an example.
 ```C
@@ -63,6 +65,12 @@ To know if the queue is empty or no is used:
 bool queue_isempty(const Queue *queue);
 ```
 returns true if the queue is empty (or NULL), false otherwise
+
+To know if the queue is full or no is used:
+```C
+bool queue_isfull(const Queue *queue);
+```
+returns true if the queue is full (or NULL), false otherwise
 
 
 Author
